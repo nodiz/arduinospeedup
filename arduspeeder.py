@@ -49,12 +49,22 @@ out = open(fileOut, "w")
 with open(fileInput, 'r') as mod:
     out.write(defines)
     for line in mod.readlines():
-        line = re.sub(r'pinMode\((.*)\, INPUT\)', r'pinAsInput(\1)', line)
-        line = re.sub(r'pinMode\((.*)\, OUTPUT', r'pinAsOutput(\1', line)
-        line = re.sub(r'pinMode\((.*)\, INPUT_PULLUP', r"pinAsInputPullUp(\1", line)
-        line = re.sub(r'digitalWrite\((.*)\, LOW', r'digitalLow(\1', line)
-        line = re.sub(r'digitalWrite\((.*)\, HIGH', r'digitalHigh(\1', line)
-        line = re.sub(r'digitalRead\((.*)\)', r'digitalState(\1)', line)
+        line2=line
+        line = re.sub(r'pinMode\(\s*(.*)\s*,\s*INPUT\)', r'pinAsInput(\1)', line)
+        line = re.sub(r'pinMode\(\s*(.*)\s*,\s*OUTPUT', r'pinAsOutput(\1', line)
+        line = re.sub(r'pinMode\(\s*(.*)\s*,\s*INPUT_PULLUP', r"pinAsInputPullUp(\1", line)
+        line = re.sub(r'digitalRead\(\s*(.*)\)', r'digitalState(\1)', line)
+
+        line = re.sub(r'digitalWrite\((.*)\s*,\s*LOW', r'digitalLow(\1', line)
+        line = re.sub(r'digitalWrite\(\s*(.*)\s*,\s*HIGH', r'digitalHigh(\1', line)
+        line = re.sub(r'digitalWrite\((.*)\s*,\s*0', r'digitalLow(\1', line)
+        line = re.sub(r'digitalWrite\(\s*(.*)\s*,\s*1', r'digitalHigh(\1', line)
+
+        line = re.sub(r'digitalState\((.*)\)\s*==\s*HIGH\s*', r'isHigh(\1)', line)
+        line = re.sub(r'digitalState\((.*)\)\s*==\s*LOW\s*', r'isLow(\1)', line)
+        line = re.sub(r'digitalState\((.*)\)\s*==\s*1\s*', r'isHigh(\1)', line)
+        line = re.sub(r'digitalState\((.*)\)\s*==\s*0\s*', r'isLow(\1)', line)
+
         out.write(line)
 out.close()
 
