@@ -49,7 +49,7 @@ out = open(fileOut, "w")
 with open(fileInput, 'r') as mod:
     out.write(defines)
     for line in mod.readlines():
-        line2=line
+
         line = re.sub(r'pinMode\(\s*(.*)\s*,\s*INPUT\)', r'pinAsInput(\1)', line)
         line = re.sub(r'pinMode\(\s*(.*)\s*,\s*OUTPUT', r'pinAsOutput(\1', line)
         line = re.sub(r'pinMode\(\s*(.*)\s*,\s*INPUT_PULLUP', r"pinAsInputPullUp(\1", line)
