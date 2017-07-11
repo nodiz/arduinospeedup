@@ -34,18 +34,18 @@ for filename in os.listdir('.'):
 while not os.path.isfile(fileInput) or not fileInput.endswith('.ino'):
     fileInput = raw_input("Give me your .ino file path, please: ")
 
-path = re.sub(r'(.+\/)(.+)', r'\1', fileInput)
-fileOut = re.sub(r'(.+\/)(.+)', r'\1opt\2', fileInput)
-bckp_dir = re.sub(r'(.+\/)(.+)', r'\1bckp', fileInput)
-bckp_file = re.sub(r'(.+\/)(.+)\.ino', r'\1bckp/\2', fileInput)
+PATH = re.sub(r'(.+\/)(.+)', r'\1', fileInput)
+FILEOUT = re.sub(r'(.+\/)(.+)', r'\1opt\2', fileInput)
+BCKP_DIR = re.sub(r'(.+\/)(.+)', r'\1bckp', fileInput)
+BCKP_FILE = re.sub(r'(.+\/)(.+)\.ino', r'\1bckp/\2', fileInput)
 
 try:
-    os.makedirs(bckp_dir)
+    os.makedirs(BCKP_DIR)
 except OSError as e:
     if e.errno != errno.EEXIST:
         raise
 
-out = open(fileOut, "w")
+out = open(FILEOUT, "w")
 with open(fileInput, 'r') as mod:
     out.write(DEFINES)
     for line in mod.readlines():
@@ -68,7 +68,7 @@ with open(fileInput, 'r') as mod:
         out.write(line)
 out.close()
 
-os.rename(fileInput, bckp_file)
-os.rename(fileOut, fileInput)
+os.rename(fileInput, BCKP_FILE)
+os.rename(FILEOUT, fileInput)
 
-print "Optimization completed successfully, backup of your original file stored in %s folder"%(bckp_dir)
+print "Optimization completed successfully, backup of your original file stored in %s folder"%(BCKP_DIR)
