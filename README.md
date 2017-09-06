@@ -1,7 +1,9 @@
 # arduinospeedup
-Arduino speeding up by working on atmega registers when using basic functions 
+Optimizing Arduino code runtime by working on atmega registers when calling basic I/O functions 
 
-To use it, just launch it and select your arduino file path so that, it will be optimized at a glance
+## How to use it
+
+Just launch the script from a terminal and then select your .ino file. Everything else will be done at a glance. (Notice that some defines are added to the top of your file, may be you could like then to deplace some line).
 
 Special thanks to mastering arduino, here you can find how it work and some extra explanation
 
