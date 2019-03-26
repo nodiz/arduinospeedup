@@ -1,9 +1,9 @@
 # arduinospeedup
-Optimizing Arduino code runtime and memory occupation by working on atmega registers when calling basic I/O functions 
+Arduino runtime and memory optimization by updating atmega registers when calling basic I/O functions bypassing arduino library
 
 ## How to use it
 
-Just launch the script from a terminal and then select your .ino file. Everything else will be done at a glance.
+Just launch the script from a terminal and then select your .ino file.
 
-Here you can find some more information about the main ideas behind the script
+More info:
 http://masteringarduino.blogspot.ch/2013/10/fastest-and-smallest-digitalread-and.html
